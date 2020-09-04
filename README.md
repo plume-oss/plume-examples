@@ -97,6 +97,12 @@ gremlin> g.V().has("METHOD", "fullName", "intraprocedural.arithmetic.Arithmetic1
 
 TODO: Add more operations
 
+# TigerGraph
+
+```
+docker-compose -f src/main/resources/docker/tigergraph.yml up
+```
+
 ## Contributing
 
 If you find a bug or would like to see a [certain kind of query](#connecting-to-the-gremlin-console) on this repository

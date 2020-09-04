@@ -4,3 +4,5 @@ graph.xml
 .vscode
 /lib/
 **/**.class
+/tmp/
+.idea

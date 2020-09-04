@@ -1,3 +1,5 @@
+package conf
+
 graph = JanusGraphFactory.open('/etc/opt/janusgraph/janusgraph.properties')
 
 mgmt = graph.openManagement()
