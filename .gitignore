@@ -6,3 +6,4 @@ graph.xml
 **/**.class
 /tmp/
 .idea
+/.gradle/
