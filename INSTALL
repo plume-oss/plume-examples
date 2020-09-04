@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Download latest stable GraPL libraries
+rm -rf lib && mkdir -p lib && rm -rf ./tmp && mkdir -p ./tmp && cd ./tmp \
+  && git init \
+  && git remote add origin https://github.com/plume-oss/plume-driver.git \
+  && git fetch --depth 1 origin develop \
+  && git reset --hard FETCH_HEAD \
+  && ./gradlew jar \
+  && mv ./build/libs/plume-driver-X.X.X.jar ../lib/plume-driver-X.X.X.jar \
+  && cd .. && rm -rf ./tmp && mkdir -p ./tmp && cd ./tmp \
+  && git init \
+  && git remote add origin https://github.com/plume-oss/plume-extractor.git \
+  && git fetch --depth 1 origin develop \
+  && git reset --hard FETCH_HEAD \
+  && ./gradlew jar \
+  && mv ./build/libs/plume-extractor-X.X.X.jar ../lib/plume-extractor-X.X.X.jar \
+  && cd .. && rm -rf ./tmp \

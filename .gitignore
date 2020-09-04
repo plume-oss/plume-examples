@@ -1,0 +1,6 @@
+/bin/
+/build/
+graph.xml
+.vscode
+/lib/
+**/**.class
