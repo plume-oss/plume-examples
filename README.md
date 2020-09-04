@@ -48,7 +48,7 @@ _"JanusGraph is an open source, distributed graph database under The Linux Found
 Apache License 2.0. The project is supported by IBM, Google, and Hortonworks. JanusGraph supports various storage 
 backends."_
 
-To test with JanusGraph as the graph database backend, start by running the database with either:
+To run with JanusGraph as the graph database backend, start by running the database with either:
 
 Berkeley Java Edition and Lucene (embedded, lightweight)
 ```
@@ -88,7 +88,7 @@ gremlin> g.V().hasLabel("FILE").values("name").toList()
 ```
 *How many times each variable is assigned within a method*:
 ```
-gremlin> g.V().has("METHOD", "fullName", "intraprocedural.arithmetic.Arithmetic1.main") \
+gremlin> g.V().has("METHOD", "fullName", "intraprocedural.basic.Basic1.main") \
     .repeat(__.out("AST")).emit().has("BLOCK", "name", "STORE") \
         .out().hasLabel("LOCAL") \
     .groupCount("lv").by("name").cap("lv")
@@ -99,9 +99,16 @@ TODO: Add more operations
 
 # TigerGraph
 
+_TigerGraph is the fastest and most scalable graph database analytics platform—and the only native parallel graph database._
+
+To run with TigerGraph as the graph database backend, start by running the database with:
+
 ```
 docker-compose -f src/main/resources/docker/tigergraph.yml up
 ```
+
+This will also create the graph "cpg", schema, and all necessary queries. The JanusGraph example can be run using 
+`./gradlew tigerGraphApp`.
 
 ## Contributing
 

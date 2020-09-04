@@ -11,17 +11,17 @@ import java.io.IOException;
 public class TinkerGraphApp {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Creating hook");
+        System.out.println("Creating driver");
         TinkerGraphDriver driver = (TinkerGraphDriver) DriverFactory.invoke(GraphDatabase.TINKER_GRAPH);
         driver.connect();
         // Attach the hook to the cannon
-        Extractor cannon = new Extractor(driver, new File("./src/main/resources/examples"));
+        Extractor extractor = new Extractor(driver, new File("./src/main/resources/examples"));
         File f = new File("./src/main/resources/examples/intraprocedural/basic/Basic1.java");
         // Load the cannon with the directory of all the tests
-        cannon.load(f);
+        extractor.load(f);
         // Fire the loaded files to be projected the graph database
         System.out.println("Projecting graph");
-        cannon.project();
+        extractor.project();
         // For the TinkerGraph hook, we can export this graph using the format and
         // directory specified by the extension
         driver.exportGraph("./graph.xml");

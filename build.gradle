@@ -36,6 +36,7 @@ dependencies {
 ext {
     tinkerGraphMainClass = "com.example.TinkerGraphApp"
     janusGraphMainClass = "com.example.JanusGraphApp"
+    tigerGraphMainClass = "com.example.TigerGraphApp"
 }
 
 task tinkerGraphApp(type: JavaExec) {
@@ -50,4 +51,11 @@ task janusGraphApp(type: JavaExec) {
     description = "Run an example app using the JanusGraph backend."
     classpath = sourceSets.main.runtimeClasspath
     main = janusGraphMainClass
+}
+
+task tigerGraphApp(type: JavaExec) {
+    group = "Execution"
+    description = "Run an example app using the TigerGraph backend."
+    classpath = sourceSets.main.runtimeClasspath
+    main = tigerGraphMainClass
 }
