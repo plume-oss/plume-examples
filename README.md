@@ -51,11 +51,11 @@ backends."_
 To run with JanusGraph as the graph database backend, start by running the database with either:
 
 Berkeley Java Edition and Lucene (embedded, lightweight)
-```
+```bash
 docker-compose -f src/main/resources/docker/janus-berkeleyje-lucene.yml up
 ```
 or Scylla and ElasticSearch (can cluster, is faster, can handle heavier loads)
-```
+```bash
 docker-compose -f src/main/resources/docker/janus-scylla-es.yml up
 ```
 
@@ -82,12 +82,12 @@ separate graph database instance is required i.e. not in-memory configurations. 
 You should now be connected to the JanusGraph database with the Gremlin Console and can run some basic queries such as:
 
 *List all classes*:
-```
+```groovy
 gremlin> g.V().hasLabel("FILE").values("name").toList()
 ==>Arithmetic1
 ```
 *How many times each variable is assigned within a method*:
-```
+```groovy
 gremlin> g.V().has("METHOD", "fullName", "intraprocedural.basic.Basic1.main") \
     .repeat(__.out("AST")).emit().has("BLOCK", "name", "STORE") \
         .out().hasLabel("LOCAL") \
@@ -103,7 +103,7 @@ _TigerGraph is the fastest and most scalable graph database analytics platformâ€
 
 To run with TigerGraph as the graph database backend, start by running the database with:
 
-```
+```bash
 docker-compose -f src/main/resources/docker/tigergraph.yml up
 ```
 

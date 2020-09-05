@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Download latest stable GraPL libraries
+# Download latest stable Plume libraries
 rm -rf lib && mkdir -p lib && rm -rf ./tmp && mkdir -p ./tmp && cd ./tmp \
   && git init \
   && git remote add origin https://github.com/plume-oss/plume-driver.git \
