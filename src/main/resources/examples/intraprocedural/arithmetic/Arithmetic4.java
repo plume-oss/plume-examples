@@ -7,7 +7,6 @@ public class Arithmetic4 {
         int b = 2;
         int c = a++;
         int d = --b;
-        d++;
     }
 
 }
