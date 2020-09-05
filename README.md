@@ -84,7 +84,7 @@ You should now be connected to the JanusGraph database with the Gremlin Console 
 *List all classes*:
 ```groovy
 gremlin> g.V().hasLabel("FILE").values("name").toList()
-==>Arithmetic1
+==>Basic1
 ```
 *How many times each variable is assigned within a method*:
 ```groovy
