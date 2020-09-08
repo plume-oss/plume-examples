@@ -17,7 +17,7 @@ services:
       timeout: 30s
       retries: 10
     volumes:
-      - "../conf/jg_schema.groovy:/docker-entrypoint-initdb.d/schema.groovy"
+      - "../schema/jg_schema.groovy:/docker-entrypoint-initdb.d/schema.groovy"
     networks:
       - jg-grapl-network
     mem_limit: 500m

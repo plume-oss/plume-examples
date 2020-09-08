@@ -7,3 +7,6 @@ graph.xml
 /tmp/
 .idea
 /.gradle/
+/.classpath
+/.project
+/.settings/org.eclipse.buildship.core.prefs
