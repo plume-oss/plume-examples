@@ -241,6 +241,7 @@ CREATE QUERY showAll() FOR GRAPH cpg {
            FROM start:s -(:e)-> :t
            ACCUM @@edges += e;
   PRINT @@edges;
+  PRINT result;
 }
 
 CREATE QUERY maxOrder() FOR GRAPH cpg {
