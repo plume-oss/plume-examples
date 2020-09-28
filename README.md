@@ -107,8 +107,25 @@ To run with TigerGraph as the graph database backend, start by running the datab
 docker-compose -f src/main/resources/docker/tigergraph.yml up
 ```
 
-This will also create the graph "cpg", schema, and all necessary queries. The JanusGraph example can be run using 
-`./gradlew tigerGraphApp`.
+Running the TigerGraph example:
+
+1) Start TigerGraph using `docker-compose`. This will install the schema and queries. Make sure the queries have 
+finished installing before moving to the next step.
+2) Project a program's CPG into TigerGraph with `./gradlew tigerGraphApp`.
+3) Open your web-browser and navigate to http://localhost:14240/ to view GraphStudio where you can play around with the CPG.
+
+# Amazon Neptune
+
+_Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy to build and run applications that work with highly connected datasets._
+
+To communicate with a Neptune cluster, one needs to run this examples repository from within an EC2 instance on the same
+VPC as the Neptune cluster. More on how this works can be found in the 
+[documentation](https://plume-oss.github.io/plume-docs/storage-backends/neptune/).
+
+Running the Neptune example:
+
+1) Make sure the Neptune cluster is up and fill in the missing parameters under `src/main/java/com/example/NeptuneApp`.
+2) Project a program's CPG into Neptune with `./gradlew neptuneApp`.
 
 ## Contributing
 

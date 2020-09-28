@@ -37,6 +37,7 @@ ext {
     tinkerGraphMainClass = "com.example.TinkerGraphApp"
     janusGraphMainClass = "com.example.JanusGraphApp"
     tigerGraphMainClass = "com.example.TigerGraphApp"
+    neptuneMainClass = "com.example.NeptuneApp"
 }
 
 task tinkerGraphApp(type: JavaExec) {
@@ -58,4 +59,11 @@ task tigerGraphApp(type: JavaExec) {
     description = "Run an example app using the TigerGraph backend."
     classpath = sourceSets.main.runtimeClasspath
     main = tigerGraphMainClass
+}
+
+task neptuneApp(type: JavaExec) {
+    group = "Execution"
+    description = "Run an example app using the Amazon Neptune backend."
+    classpath = sourceSets.main.runtimeClasspath
+    main = neptuneMainClass
 }
