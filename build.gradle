@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.apache.tinkerpop:tinkergraph-gremlin:3.4.6'
     implementation 'org.janusgraph:janusgraph-driver:0.5.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
+    implementation 'com.steelbridgelabs.oss:neo4j-gremlin-bolt:0.4.4'
     implementation 'khttp:khttp:1.0.0'
     // Kotlin dependencies for Plume
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72"
@@ -38,6 +39,7 @@ ext {
     janusGraphMainClass = "com.example.JanusGraphApp"
     tigerGraphMainClass = "com.example.TigerGraphApp"
     neptuneMainClass = "com.example.NeptuneApp"
+    neo4jMainClass = "com.example.Neo4jApp"
 }
 
 task tinkerGraphApp(type: JavaExec) {
@@ -66,4 +68,11 @@ task neptuneApp(type: JavaExec) {
     description = "Run an example app using the Amazon Neptune backend."
     classpath = sourceSets.main.runtimeClasspath
     main = neptuneMainClass
+}
+
+task neo4jApp(type: JavaExec) {
+    group = "Execution"
+    description = "Run an example app using the Neo4j backend."
+    classpath = sourceSets.main.runtimeClasspath
+    main = neo4jMainClass
 }

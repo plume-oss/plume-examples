@@ -127,6 +127,25 @@ Running the Neptune example:
 1) Make sure the Neptune cluster is up and fill in the missing parameters under `src/main/java/com/example/NeptuneApp`.
 2) Project a program's CPG into Neptune with `./gradlew neptuneApp`.
 
+# Neo4j
+
+_Neo4j is the graph database platform powering mission-critical enterprise applications like artificial intelligence, fraud detection and recommendations._
+
+To run with Neo4j as the graph database backend, start by running the database with:
+
+```bash
+docker-compose -f src/main/resources/docker/neo4j.yml up
+```
+
+This starts up the Bitnami Neo4j image. Running the Neo4j example:
+
+1) Project a program's CPG into Neptune with `./gradlew neo4jApp`.
+2) View the CPG by navigating to http://localhost:7474 and (if required) log in with the following credentials
+
+    Username: `neo4j`
+    
+    Password: `neo4j123`
+
 ## Contributing
 
 If you find a bug or would like to see a [certain kind of query](#connecting-to-the-gremlin-console) on this repository
