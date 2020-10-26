@@ -19,9 +19,9 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-core:2.8.2'
     implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.8.2'
     // Gremlin dependencies
-    implementation 'org.apache.tinkerpop:gremlin-core:3.4.6'
+    implementation 'org.apache.tinkerpop:gremlin-core:3.4.8'
     // Graph database dependencies
-    implementation 'org.apache.tinkerpop:tinkergraph-gremlin:3.4.6'
+    implementation 'org.apache.tinkerpop:tinkergraph-gremlin:3.4.8'
     implementation 'org.janusgraph:janusgraph-driver:0.5.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
     implementation 'com.steelbridgelabs.oss:neo4j-gremlin-bolt:0.4.4'
