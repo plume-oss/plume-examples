@@ -4,7 +4,7 @@ DROP ALL
 
 ## Basic CPG vertex
 CREATE VERTEX CPG_VERT (
-    PRIMARY_ID id INT,
+    PRIMARY_ID id STRING,
     label STRING DEFAULT "UNKNOWN",
     argumentIndex INT DEFAULT -1,
     dispatchType STRING DEFAULT "STATIC_DISPATCH",
@@ -46,7 +46,7 @@ CREATE DIRECTED EDGE SOURCE_FILE (FROM CPG_VERT, TO CPG_VERT)
 
 CREATE GRAPH cpg (*)
 
-CREATE QUERY areVerticesJoinedByEdge(VERTEX vFrom, VERTEX vTo, STRING edgeLabel) FOR GRAPH cpg {
+CREATE QUERY areVerticesJoinedByEdge(VERTEX<CPG_VERT> vFrom, VERTEX<CPG_VERT> vTo, STRING edgeLabel) FOR GRAPH cpg {
   bool result;
   setFrom = {ANY};
   temp = SELECT tgt
@@ -60,12 +60,78 @@ CREATE QUERY areVerticesJoinedByEdge(VERTEX vFrom, VERTEX vTo, STRING edgeLabel)
 
 CREATE QUERY showAll() FOR GRAPH cpg {
   SetAccum<EDGE> @@edges;
-  allVertices = {ANY};
+  allVert = {ANY};
   result = SELECT s
-           FROM allVertices:s -(:e)-> :t
+           FROM allVert:s -(:e)-> :t
            ACCUM @@edges += e;
+  PRINT allVert;
   PRINT @@edges;
-  PRINT allVertices;
+}
+
+CREATE QUERY getMethod(VERTEX<CPG_VERT> methodHash) FOR GRAPH cpg {
+  SetAccum<EDGE> @@edges;
+  OrAccum @visited;
+  start = {methodHash};
+  allVert = {methodHash};
+
+  WHILE start.size() > 0 DO
+	  start = SELECT t
+	          FROM start:s -((AST|REF|CFG|ARGUMENT|CAPTURED_BY|BINDS_TO|RECEIVER|CONDITION|BINDS):e) ->:t
+	          WHERE NOT t.@visited
+	          ACCUM t.@visited = TRUE, @@edges += e;
+    allVert = allVert UNION start;
+	END;
+
+  finalEdges = SELECT t
+               FROM allVert -((AST|REF|CFG|ARGUMENT|CAPTURED_BY|BINDS_TO|RECEIVER|CONDITION|BINDS):e)->:t
+               ACCUM @@edges += e;
+
+  PRINT allVert;
+  PRINT @@edges;
+}
+
+CREATE QUERY getProgramStructure() FOR GRAPH cpg {
+  SetAccum<EDGE> @@edges;
+  OrAccum @visited;
+  start = {CPG_VERT.*};
+  start = SELECT s
+          FROM start:s -(:e)-> :t
+          WHERE s.label == "FILE";
+  allVert = start;
+
+  WHILE start.size() > 0 DO
+	  start = SELECT t
+	          FROM start:s -(AST:e) ->:t
+	          WHERE NOT t.@visited
+	          ACCUM t.@visited = TRUE, @@edges += e;
+    allVert = allVert UNION start;
+	END;
+
+  finalEdges = SELECT t
+               FROM allVert -(AST:e)->:t
+               ACCUM @@edges += e;
+
+  PRINT allVert;
+  PRINT @@edges;
+}
+
+CREATE QUERY getNeighbours(VERTEX<CPG_VERT> source) FOR GRAPH cpg {
+  SetAccum<EDGE> @@edges;
+  seed = {CPG_VERT.*};
+  sourceSet = {source};
+  outVert = SELECT tgt
+            FROM seed:src -(:e)- CPG_VERT:tgt
+            WHERE src == source
+            ACCUM @@edges += e;
+  inVert = SELECT src
+            FROM seed:src -(:e)- CPG_VERT:tgt
+            WHERE tgt == source
+            ACCUM @@edges += e;
+  allVert = inVert UNION outVert;
+  allVert = allVert UNION sourceSet;
+
+  PRINT allVert;
+  PRINT @@edges;
 }
 
 CREATE QUERY maxOrder() FOR GRAPH cpg {
