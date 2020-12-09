@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'scala'
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
 }
 
@@ -22,6 +23,8 @@ dependencies {
     implementation 'org.apache.tinkerpop:gremlin-core:3.4.8'
     // Graph database dependencies
     implementation 'org.apache.tinkerpop:tinkergraph-gremlin:3.4.8'
+    implementation 'io.shiftleft:codepropertygraph_2.13:1.3.5'
+    implementation 'io.shiftleft:semanticcpg_2.13:1.3.5'
     implementation 'org.janusgraph:janusgraph-driver:0.5.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
     implementation 'com.steelbridgelabs.oss:neo4j-gremlin-bolt:0.4.4'
@@ -32,12 +35,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.72"
     // Plume library
-    implementation name: 'plume-driver-X.X.X'
-    implementation name: 'plume-extractor-X.X.X'
+    implementation name: 'plume-X.X.X'
 }
 
 ext {
     tinkerGraphMainClass = "com.example.TinkerGraphApp"
+    overflowDbMainClass = "com.example.OverflowDbApp"
     janusGraphMainClass = "com.example.JanusGraphApp"
     tigerGraphMainClass = "com.example.TigerGraphApp"
     neptuneMainClass = "com.example.NeptuneApp"
@@ -49,6 +52,13 @@ task tinkerGraphApp(type: JavaExec) {
     description = "Run an example app using the TinkerGraph backend."
     classpath = sourceSets.main.runtimeClasspath
     main = tinkerGraphMainClass
+}
+
+task overflowDbApp(type: JavaExec) {
+    group = "Execution"
+    description = "Run an example app using the OverflowDb backend."
+    classpath = sourceSets.main.runtimeClasspath
+    main = overflowDbMainClass
 }
 
 task janusGraphApp(type: JavaExec) {
