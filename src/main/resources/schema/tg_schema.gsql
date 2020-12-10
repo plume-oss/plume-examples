@@ -11,8 +11,10 @@ CREATE VERTEX CPG_VERT (
     evaluationStrategy STRING DEFAULT "BY_REFERENCE",
     methodFullName STRING DEFAULT "null",
     methodInstFullName STRING DEFAULT "null",
+    modifierType STRING DEFAULT "null",
     typeFullName STRING DEFAULT "null",
     typeDeclFullName STRING DEFAULT "null",
+    dynamicTypeFullName STRING DEFAULT "null",
     dynamicTypeHintFullName STRING DEFAULT "null",
     code STRING DEFAULT "null",
     columnNumber INT DEFAULT -1,
@@ -65,6 +67,20 @@ CREATE QUERY showAll() FOR GRAPH cpg {
   result = SELECT s
            FROM allVert:s -(:e)-> :t
            ACCUM @@edges += e;
+  PRINT allVert;
+  PRINT @@edges;
+}
+
+CREATE QUERY getMethodHead(VERTEX<CPG_VERT> methodHash) FOR GRAPH cpg {
+  SetAccum<EDGE> @@edges;
+  start = {methodHash};
+  allVert = {methodHash};
+
+  start = SELECT t
+          FROM start:s -(AST:e)-> :t
+          ACCUM @@edges += e;
+  allVert = allVert UNION start;
+
   PRINT allVert;
   PRINT @@edges;
 }

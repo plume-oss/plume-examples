@@ -1,4 +1,3 @@
-// Last updated 8/9/2020
 graph = JanusGraphFactory.open('/etc/opt/janusgraph/janusgraph.properties')
 
 mgmt = graph.openManagement()
@@ -52,6 +51,7 @@ mgmt.containsPropertyKey('canonicalName') ?: mgmt.makePropertyKey('canonicalName
 mgmt.containsPropertyKey('dispatchType') ?: mgmt.makePropertyKey('dispatchType').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 mgmt.containsPropertyKey('code') ?: mgmt.makePropertyKey('code').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 mgmt.containsPropertyKey('typeFullName') ?: mgmt.makePropertyKey('typeFullName').dataType(String.class).cardinality(Cardinality.SINGLE).make()
+mgmt.containsPropertyKey('modifierType') ?: mgmt.makePropertyKey('modifierType').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 mgmt.containsPropertyKey('dynamicTypeHintFullName') ?: mgmt.makePropertyKey('dynamicTypeHintFullName').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 mgmt.containsPropertyKey('methodFullName') ?: mgmt.makePropertyKey('methodFullName').dataType(String.class).cardinality(Cardinality.SINGLE).make()
 mgmt.containsPropertyKey('typeDeclFullName') ?: mgmt.makePropertyKey('typeDeclFullName').dataType(String.class).cardinality(Cardinality.SINGLE).make()
@@ -61,5 +61,6 @@ mgmt.getGraphIndex("byASTOrder") != null ?: mgmt.buildIndex("byASTOrder", Vertex
 mgmt.getGraphIndex("byName") != null ?: mgmt.buildIndex("byName", Vertex.class).addKey(mgmt.getPropertyKey("name")).buildCompositeIndex()
 mgmt.getGraphIndex("byFullName") != null ?: mgmt.buildIndex("byFullName", Vertex.class).addKey(mgmt.getPropertyKey("fullName")).buildCompositeIndex()
 mgmt.getGraphIndex("bySignature") != null ?: mgmt.buildIndex("bySignature", Vertex.class).addKey(mgmt.getPropertyKey("signature")).buildCompositeIndex()
+mgmt.getGraphIndex("byHash") != null ?: mgmt.buildIndex("byHash", Vertex.class).addKey(mgmt.getPropertyKey("hash")).buildCompositeIndex()
 
 mgmt.commit()
