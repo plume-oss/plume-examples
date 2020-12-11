@@ -57,6 +57,14 @@ property graph model."_
 This requires no setup other than declaring the TinkerGraph dependencies in `build.gradle`. The 
 TinkerGraph example can be run using `./gradlew tinkerGraphApp`.
 
+### OverflowDb
+
+_"ShiftLeft's OverflowDB is an in-memory graph database, which implements a swapping mechanism to deal with large 
+graphs."_
+
+This requires no setup other than declaring the OverflowDb dependencies in `build.gradle`. The
+OverflowDb example can be run using `./gradlew overflowDbApp`.
+
 ### JanusGraph
 
 _"JanusGraph is an open source, distributed graph database under The Linux Foundation. JanusGraph is available under the
