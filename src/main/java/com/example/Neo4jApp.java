@@ -1,10 +1,9 @@
 package com.example;
 
-import za.ac.sun.plume.Extractor;
-import za.ac.sun.plume.drivers.DriverFactory;
-import za.ac.sun.plume.drivers.GraphDatabase;
-import za.ac.sun.plume.drivers.Neo4jDriver;
-import za.ac.sun.plume.drivers.TigerGraphDriver;
+import io.github.plume.oss.Extractor;
+import io.github.plume.oss.drivers.DriverFactory;
+import io.github.plume.oss.drivers.GraphDatabase;
+import io.github.plume.oss.drivers.Neo4jDriver;
 
 import java.io.File;
 import java.io.IOException;

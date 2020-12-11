@@ -1,9 +1,9 @@
 package com.example;
 
-import za.ac.sun.plume.Extractor;
-import za.ac.sun.plume.drivers.DriverFactory;
-import za.ac.sun.plume.drivers.GraphDatabase;
-import za.ac.sun.plume.drivers.TinkerGraphDriver;
+import io.github.plume.oss.Extractor;
+import io.github.plume.oss.drivers.DriverFactory;
+import io.github.plume.oss.drivers.GraphDatabase;
+import io.github.plume.oss.drivers.TinkerGraphDriver;
 
 import java.io.File;
 import java.io.IOException;

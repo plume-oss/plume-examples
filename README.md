@@ -16,7 +16,22 @@ This section outline the requirements and setup involved before using this appli
 
 ### Installation
 
-Running `INSTALL` uses `git` to pull and build the latest stable Plume libraries based on the `develop` branch.
+Replace `X.X.X` with the desired version on [jCenter](https://bintray.com/plume-oss/maven/plume-core/_latestVersion).
+
+Maven:
+```mxml
+<dependency>
+  <groupId>io.github.plume-oss</groupId>
+  <artifactId>plume</artifactId>
+  <version>X.X.X</version>
+  <type>pom</type>
+</dependency>
+```
+
+Gradle:
+```groovy
+implementation 'io.github.plume-oss:plume:X.X.X'
+```
 
 ### Selecting a file to project
 
