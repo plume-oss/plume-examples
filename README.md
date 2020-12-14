@@ -62,8 +62,13 @@ TinkerGraph example can be run using `./gradlew tinkerGraphApp`.
 _"ShiftLeft's OverflowDB is an in-memory graph database, which implements a swapping mechanism to deal with large 
 graphs."_
 
-This requires no setup other than declaring the OverflowDb dependencies in `build.gradle`. The
-OverflowDb example can be run using `./gradlew overflowDbApp`.
+This requires no setup other than declaring the OverflowDb dependencies in `build.gradle`. The OverflowDb example can be
+run using `./gradlew overflowDbApp`. To serialize/de-serialize the database, the location needs to be specified before 
+the connection by the calling:
+```kotlin
+driver.dbfilename("cpg.bin");
+```
+If it does not exist, then it will be created. If it does exist then that CPG will be imported.
 
 ### JanusGraph
 
