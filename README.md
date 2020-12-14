@@ -35,9 +35,9 @@ implementation 'io.github.plume-oss:plume:X.X.X'
 
 ### Selecting a file to project
 
-Example files can be found under `src/main/resources/examples`. Under `com.example.*App.java` a hard-coded file path to 
-`Arithmetic1.java` is set but this can easily be changed to one of the other example files. Note that Plume can accept
-a source, class, or directories as input.
+Example files can be found under `src/main/resources/examples` which are from Plume's unit tests. 
+Under `com.example.*App.java` a hard-coded file path to `Basic1.java` is set but this can easily be changed to one of 
+the other example files. Note that Plume can accept a source, class, or directories as input.
 
 ## Example Setups
 
@@ -45,7 +45,8 @@ The basic operation that the `com.example.*App.java` classes do is:
 
 1) Create a hook that connects to the selected graph database backend.
 2) Loads a Java file to project to the database.
-3) (TinkerGraph) Exports the projected graph as `graph.xml` to the base directory.
+3) TinkerGraph and OverflowDb can serialize and deserialize the CPG to files whereas the other databases store the
+graphs onto disk in their systems.
 
 One can then visualize this graph using a visualization tool such as [Cytoscape](https://cytoscape.org/).
 
