@@ -15,7 +15,7 @@ public class JanusGraphApp {
         try (JanusGraphDriver driver = (JanusGraphDriver) DriverFactory.invoke(GraphDatabase.JANUS_GRAPH)) {
             driver.remoteConfig("./src/main/resources/conf/remote-graph.properties").connect();
             // Create the extractor with the driver and class root directory
-            Extractor extractor = new Extractor(driver, new File("./src/main/resources/examples"));
+            Extractor extractor = new Extractor(driver);
             File f = new File("./src/main/resources/examples/intraprocedural/basic/Basic1.java");
             // Load the extractor with the directory of all the tests
             extractor.load(f);

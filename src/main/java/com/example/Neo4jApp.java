@@ -15,7 +15,7 @@ public class Neo4jApp {
         try (Neo4jDriver driver = (Neo4jDriver) DriverFactory.invoke(GraphDatabase.NEO4J)) {
             driver.hostname("127.0.0.1").port(7687).username("neo4j").password("neo4j123").database("neo4j");
             // Create the extractor with the driver and class root directory
-            Extractor extractor = new Extractor(driver, new File("./src/main/resources/examples"));
+            Extractor extractor = new Extractor(driver);
             File f = new File("./src/main/resources/examples/intraprocedural/basic/Basic1.java");
             // Load the extractor with the directory of all the tests
             extractor.load(f);
