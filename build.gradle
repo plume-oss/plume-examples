@@ -5,33 +5,16 @@ plugins {
 }
 
 repositories {
+    mavenCentral()
+    mavenLocal()
     jcenter()
 }
 
 defaultTasks "tinkerGraphApp"
 
 dependencies {
-    // Soot for parsing byte-code
-    implementation 'org.soot-oss:soot:4.2.1'
-    // Logging dependencies
-    implementation 'org.apache.logging.log4j:log4j-core:2.8.2'
-    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.8.2'
-    // Gremlin dependencies
-    implementation 'org.apache.tinkerpop:gremlin-core:3.4.8'
-    // Graph database dependencies
-    implementation 'org.apache.tinkerpop:tinkergraph-gremlin:3.4.8'
-    implementation 'io.shiftleft:codepropertygraph_2.13:1.3.5'
-    implementation 'io.shiftleft:semanticcpg_2.13:1.3.5'
-    implementation 'org.janusgraph:janusgraph-driver:0.5.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
-    implementation 'com.steelbridgelabs.oss:neo4j-gremlin-bolt:0.4.4'
-    implementation 'khttp:khttp:1.0.0'
-    // Hashing library
-    implementation 'org.lz4:lz4-java:1.7.1'
-    // Kotlin dependencies for Plume
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.21"
     // Plume library
-    implementation 'io.github.plume-oss:plume:0.0.2'
+    implementation 'io.github.plume-oss:plume:0.0.3'
 }
 
 ext {
