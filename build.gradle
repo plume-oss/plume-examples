@@ -13,7 +13,10 @@ defaultTasks "tinkerGraphApp"
 
 dependencies {
     // Plume library
-    implementation 'io.github.plume-oss:plume:0.0.3'
+    implementation('io.github.plume-oss:plume:0.0.3') {
+        // Temporary fix until this is addressed
+        exclude group: 'io.github.plume-oss', module: 'cpgconv'
+    }
 }
 
 ext {
