@@ -2,13 +2,13 @@ version: "2.4"
 
 services:
   janusgraph:
-    image: janusgraph/janusgraph:0.5.2
-    container_name: grapl-janusgraph
+    image: janusgraph/janusgraph:0.5.3
+    container_name: janusgraph-plume
     environment:
       JANUS_PROPS_TEMPLATE: cql-es
       janusgraph.storage.backend: cql
-      janusgraph.storage.hostname: grapl-scylla
-      janusgraph.index.search.hostname: grapl-elastic
+      janusgraph.storage.hostname: scylla-plume
+      janusgraph.index.search.hostname: elastic-plume
     ports:
       - "8182:8182"
     healthcheck:
@@ -20,12 +20,12 @@ services:
       - "../schema/jg_schema.groovy:/docker-entrypoint-initdb.d/schema.groovy"
       - "../conf/jg-server-conf:/etc/opt/janusgraph/:ro"
     networks:
-      - jg-grapl-network
+      - jg-plume-network
     mem_limit: 500m
 
   scylla:
     image: scylladb/scylla:4.0.0
-    container_name: grapl-scylla
+    container_name: scylla-plume
     command: "--smp 2"
     healthcheck:
       test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
@@ -33,12 +33,12 @@ services:
       timeout: 10s
       retries: 5
     networks:
-      - jg-grapl-network
+      - jg-plume-network
     mem_limit: 600m
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
-    container_name: grapl-elastic
+    container_name: elastic-plume
     environment:
       - discovery.type=single-node
       - http.host=0.0.0.0
@@ -50,8 +50,8 @@ services:
       retries: 30
     user: "1000"
     networks:
-      - jg-grapl-network
+      - jg-plume-network
     mem_limit: 1400m
 
 networks:
-  jg-grapl-network:
+  jg-plume-network:
