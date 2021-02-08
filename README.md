@@ -16,7 +16,7 @@ This section outline the requirements and setup involved before using this appli
 
 ### Installation
 
-Replace `X.X.X` with the desired version on [JCenter](https://bintray.com/plume-oss/maven/plume/_latestVersion).
+Replace `X.X.X` with the desired version on [![](https://jitpack.io/v/plume-oss/plume.svg)](https://jitpack.io/#plume-oss/plume).
 
 Maven:
 ```mxml
