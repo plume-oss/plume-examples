@@ -14,7 +14,7 @@ public class OverflowDbApp {
         System.out.println("Creating driver");
         try (OverflowDbDriver driver = (OverflowDbDriver) DriverFactory.invoke(GraphDatabase.OVERFLOWDB)) {
             // Specify file to store database
-            driver.setStorageLocation("cpg.bin");
+            driver.storageLocation("cpg.bin");
             // Create the extractor with the driver and class root directory
             Extractor extractor = new Extractor(driver);
             File f = new File("./src/main/resources/examples/intraprocedural/basic/Basic1.java");

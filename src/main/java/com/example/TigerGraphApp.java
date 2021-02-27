@@ -13,7 +13,13 @@ public class TigerGraphApp {
     public static void main(String[] args) {
         System.out.println("Creating driver");
         try (TigerGraphDriver driver = (TigerGraphDriver) DriverFactory.invoke(GraphDatabase.TIGER_GRAPH)) {
-            driver.hostname("127.0.0.1").port(9000).secure(false);
+            driver.hostname("127.0.0.1")
+                    .username("tigergraph")
+                    .password("tigergraph")
+                    .gsqlPort(14240)
+                    .restPpPort(9000)
+                    .secure(false);
+            driver.buildSchema();
             // Create the extractor with the driver and class root directory
             Extractor extractor = new Extractor(driver);
             File f = new File("./src/main/resources/examples/intraprocedural/basic/Basic1.java");
