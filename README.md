@@ -39,6 +39,17 @@ Example files can be found under `src/main/resources/examples` which are from Pl
 Under `com.example.*App.java` a hard-coded file path to `Basic1.java` is set but this can easily be changed to one of 
 the other example files. Note that Plume can accept a source, class, or directories as input.
 
+### Logging
+
+The logging specification for Log4j2 can be found under `src/main/resources/log4j2.xml`. The logging level for
+Plume can be adjusted under the tag:
+```xml
+<Logger name="io.github.plume.oss" level="info" additivity="false">
+   <AppenderRef ref="console"/>
+</Logger>
+```
+Set to `DEFAULT` to see which steps Plume takes in constructing the program structure and methods.
+
 ## Example Setups
 
 The basic operation that the `com.example.*App.java` classes do is:
