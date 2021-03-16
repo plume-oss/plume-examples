@@ -1,6 +1,7 @@
 /bin/
 /build/
-graph.xml
+*.xml
+*.json
 .vscode
 /lib/
 **/**.class

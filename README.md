@@ -2,6 +2,13 @@
 
 Repository showcasing an example use of the Plume libraries.
 
+## Known Issues
+
+All known issues can be found [here](https://github.com/plume-oss/plume/issues). A big one right now is that the 
+parallel SCPG passes fail - this is due to issue [#59](https://github.com/plume-oss/plume/issues/59) which is linked to
+[#93](https://github.com/plume-oss/plume/issues/93),
+  
+
 ## Setup
 
 This section outline the requirements and setup involved before using this application.
