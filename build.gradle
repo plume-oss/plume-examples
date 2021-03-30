@@ -15,11 +15,14 @@ defaultTasks "tinkerGraphApp"
 
 dependencies {
     // Plume library
-    implementation('io.github.plume-oss:plume:0.3.4') {
+    implementation('io.github.plume-oss:plume:0.3.10') {
         // Temporary fix until this is addressed.
         // This is simply a thin Scala layer to allow communication with SCPG's API and is packaged in the core JAR.
         exclude group: 'io.github.plume-oss', module: 'cpgconv'
     }
+    implementation "io.shiftleft:codepropertygraph_2.13:1.3.100"
+    implementation "io.shiftleft:dataflowengineoss_2.13:1.3.100"
+    implementation "io.shiftleft:semanticcpg_2.13:1.3.100"
     compile "org.apache.logging.log4j:log4j-api:2.13.3"
     compile "org.apache.logging.log4j:log4j-core:2.13.3"
     compile "org.apache.logging.log4j:log4j-slf4j-impl:2.13.3"
