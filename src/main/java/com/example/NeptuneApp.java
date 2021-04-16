@@ -15,7 +15,8 @@ public class NeptuneApp {
         try (NeptuneDriver driver = (NeptuneDriver) DriverFactory.invoke(GraphDatabase.NEPTUNE)) {
             driver.addHostnames("<neptune-cluster-address-without-https>")
                     .keyCertChainFile("<pem-certificate-path-here>")
-                    .port(8182)
+                    .port(8182) // default is 8182
+                    .clearOnConnect(true) // optionally set if there is data present
                     .connect();
             // Create the extractor with the driver and class root directory
             Extractor extractor = new Extractor(driver);

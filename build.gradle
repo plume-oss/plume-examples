@@ -15,7 +15,7 @@ defaultTasks "tinkerGraphApp"
 
 dependencies {
     // Plume library
-    implementation('io.github.plume-oss:plume:0.4.7') {
+    implementation('io.github.plume-oss:plume:0.5.0') {
         // Temporary fix until this is addressed.
         // This is simply a thin Scala layer to allow communication with SCPG's API and is packaged in the core JAR.
         exclude group: 'io.github.plume-oss', module: 'cpgconv'
