@@ -17,8 +17,21 @@ object OverflowDbApp {
     )) { d =>
       println(s"Creating CPG from .class files found under $targetDir")
       new Jimple2Cpg().createCpg(rawSourceCodePath = targetDir, driver = d)
+      taintAnalysis(d)
     }
     println(s"Done! CPG persisted at $dbOutputFile")
+  }
+
+  def taintAnalysis(d: OverflowDbDriver): Unit = {
+    import io.shiftleft.semanticcpg.language._
+    import io.shiftleft.codepropertygraph.{Cpg => CPG}
+
+    println("Finding data flows from source identifiers with the name 'a' sinking at methods with names 'add'")
+    val cpg = CPG(d.cpg.graph)
+    d
+      .nodesReachableBy(cpg.identifier("a"), cpg.call("add"))
+      .map { n => s"${n.label}: ${n.property("CODE")} @ line ${n.property("LINE_NUMBER")}" }
+      .foreach(println(_))
   }
 
 }

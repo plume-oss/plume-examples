@@ -30,11 +30,13 @@ libraryDependencies ++= Seq(
 resolvers += "jitpack" at "https://jitpack.io"
 ```
 
-
 ### Selecting a file to project
 
 Example code to analyze can be found under `example`. The `.class` files are used
 during the CPG extraction but the source `.java` files are there for reference.
+
+Additionally, one can use `OverflowDbDriver` to perform basic taint-analysis with 
+reachability queries.
 
 ## Example Setups
 
