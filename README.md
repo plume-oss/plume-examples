@@ -32,8 +32,8 @@ resolvers += "jitpack" at "https://jitpack.io"
 
 ### Selecting a file to project
 
-Example code to analyze can be found under `example`. The `.class` files are used
-during the CPG extraction but the source `.java` files are there for reference.
+Example code to analyze can be found under `example`. One needs to first compile
+the `.java` source code files e.g. `javac -g *.java`.
 
 Additionally, one can use `OverflowDbDriver` to perform basic taint-analysis with 
 reachability queries.

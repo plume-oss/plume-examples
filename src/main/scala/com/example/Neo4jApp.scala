@@ -18,6 +18,7 @@ object Neo4jApp {
       password = "neo4j"
     )) { d =>
       println(s"Creating CPG from .class files found under $targetDir")
+      d.buildSchema() // Optional in Neo4j - also adds indices
       new Jimple2Cpg().createCpg(rawSourceCodePath = targetDir, driver = d)
     }
     println(s"Done! CPG persisted on the database")

@@ -19,6 +19,7 @@ object TigerGraphApp {
       password = "tigergraph",
     )) { d =>
       println(s"Creating CPG from .class files found under $targetDir")
+      d.buildSchema()
       new Jimple2Cpg().createCpg(rawSourceCodePath = targetDir, driver = d)
     }
     println(s"Done! CPG persisted on the database")
