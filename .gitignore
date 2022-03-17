@@ -1,6 +1,6 @@
 ### Cpg related artifacts
-*.odb
-*.xml
+cpg.odb
+cpg.xml
 
 ### VisualStudioCode template
 .vscode/*

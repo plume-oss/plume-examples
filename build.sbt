@@ -8,8 +8,8 @@ lazy val root = (project in file("."))
     name := "plume-examples"
   )
 
-val plumeVersion = "1.0.16"
-val logbackVersion = "1.2.10"
+val plumeVersion = "1.1.3"
+val log4jVersion = "2.17.2"
 
 resolvers ++= Seq(
   Resolver.mavenLocal,
@@ -20,5 +20,6 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "com.github.plume-oss" % "plume" % plumeVersion,
-  "ch.qos.logback" % "logback-classic"  % logbackVersion,
+  "org.apache.logging.log4j" % "log4j-core" % log4jVersion,
+  "org.apache.logging.log4j" % "log4j-slf4j-impl" % log4jVersion
 )
