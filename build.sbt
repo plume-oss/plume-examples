@@ -1,18 +1,17 @@
 name := "Plume Examples"
 organization := "com.example"
 version := "0.1.0-SNAPSHOT"
-scalaVersion := "2.13.7"
+scalaVersion := "2.13.8"
 
 lazy val root = (project in file("."))
   .settings(
     name := "plume-examples"
   )
 
-val plumeVersion = "1.1.7"
+val plumeVersion = "1.1.9"
 val log4jVersion = "2.17.2"
 
 resolvers ++= Seq(
-  Resolver.mavenLocal,
   Resolver.mavenCentral,
   Resolver.JCenterRepository,
   "jitpack" at "https://jitpack.io",

@@ -8,5 +8,6 @@
         <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>
+        <logger name="com.github.plume.oss.passes.reachingdef.PlumeReachingDefPass" level="WARN" />
     </Loggers>
 </Configuration>
