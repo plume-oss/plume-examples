@@ -32,8 +32,7 @@ object OverflowDbApp {
 
     println("Finding data flows from arguments to 'taint' that are eventually passed to `println`")
     val cpg = d.cpg
-    d
-      .nodesReachableBy(cpg.call("taint").argument, cpg.call("println"))
+    d.nodesReachableBy(cpg.call("taint").argument, cpg.call("println"))
       .map { result => result.path.map(x => (x.node.method.name, x.node.code, x.node.label, x.node.propertyOption("LINE_NUMBER"))) }
       .distinct
       .map { n: Vector[(String, String, String, Optional[AnyRef])] =>

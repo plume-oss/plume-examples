@@ -8,7 +8,7 @@ lazy val root = (project in file("."))
     name := "plume-examples"
   )
 
-val plumeVersion = "1.1.10"
+val plumeVersion = "1.1.11"
 val log4jVersion = "2.17.2"
 
 resolvers ++= Seq(
@@ -18,7 +18,7 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "com.github.plume-oss" % "plume" % plumeVersion,
+  "com.github.plume-oss" %% "plume" % plumeVersion,
   "org.apache.logging.log4j" % "log4j-core" % log4jVersion,
   "org.apache.logging.log4j" % "log4j-slf4j-impl" % log4jVersion
 )
