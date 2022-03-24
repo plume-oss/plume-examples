@@ -4,6 +4,7 @@ import com.github.plume.oss.Jimple2Cpg
 import com.github.plume.oss.drivers.OverflowDbDriver
 
 import java.io.File
+import java.util.Optional
 import scala.util.Using
 
 object OverflowDbApp {
@@ -28,14 +29,27 @@ object OverflowDbApp {
 
   def taintAnalysis(d: OverflowDbDriver): Unit = {
     import io.shiftleft.semanticcpg.language._
-    import io.shiftleft.codepropertygraph.{Cpg => CPG}
 
-    println("Finding data flows from source identifiers with the name 'a' sinking at methods with names 'add'")
-    val cpg = CPG(d.cpg.graph)
+    println("Finding data flows from arguments to 'taint' that are eventually passed to `println`")
+    val cpg = d.cpg
     d
-      .nodesReachableBy(cpg.identifier("a"), cpg.call("add"))
-      .map { n => s"${n.label}: ${n.property("CODE")} @ line ${n.property("LINE_NUMBER")}" }
-      .foreach(println(_))
+      .nodesReachableBy(cpg.call("taint").argument, cpg.call("println"))
+      .map { result => result.path.map(x => (x.node.method.name, x.node.code, x.node.label, x.node.propertyOption("LINE_NUMBER"))) }
+      .distinct
+      .map { n: Vector[(String, String, String, Optional[AnyRef])] =>
+        n.map { case (methodName, code, nodeLabel, lineNumber) =>
+          if (lineNumber.isPresent) {
+            s"[$methodName:${lineNumber.get()}] $code ($nodeLabel)"
+          } else {
+            s"[$methodName] $code ($nodeLabel)"
+          }
+        }
+      }
+      .zipWithIndex
+      .foreach { case (path, i) =>
+        println(s"PATH $i:")
+        path.foreach { pathElement => println(s"\t$pathElement") }
+      }
   }
 
 }

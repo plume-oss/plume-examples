@@ -38,9 +38,24 @@ the `.java` source code files e.g. `javac -g *.java`.
 Additionally, one can use `OverflowDbDriver` to perform basic taint-analysis with 
 reachability queries.
 
+### Running an Example
+
+An example follows the name convention of `com.example.*App.scala` where their main method can be run using:
+
+```
+sbt clean compile
+sbt "runMain com.example.*App"
+```
+
+e.g.
+
+```
+sbt "runMain com.example.OverflowDbApp"
+```
+
 ## Example Setups
 
-The basic operation that the `com.example.*App.java` classes do is:
+The basic operation that the `com.example.*App.scala` classes do is:
 
 1) Create a driver that connects to the selected graph database backend.
 2) Loads a directory with class files to project to the database.
