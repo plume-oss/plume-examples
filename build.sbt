@@ -8,13 +8,14 @@ lazy val root = (project in file("."))
     name := "plume-examples"
   )
 
-val plumeVersion = "1.1.12"
+val plumeVersion = "1.2.0"
 val log4jVersion = "2.17.2"
 
 resolvers ++= Seq(
   Resolver.mavenCentral,
   Resolver.JCenterRepository,
   "jitpack" at "https://jitpack.io",
+  "Gradle Tooling" at "https://repo.gradle.org/gradle/libs-releases-local/"
 )
 
 libraryDependencies ++= Seq(

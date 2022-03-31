@@ -1,6 +1,7 @@
 package com.example
 
 import com.github.plume.oss.Jimple2Cpg
+import com.github.plume.oss.domain.DataFlowCacheConfig
 import com.github.plume.oss.drivers.OverflowDbDriver
 
 import java.io.File
@@ -17,7 +18,7 @@ object OverflowDbApp {
     println("Creating driver")
     Using.resource(new OverflowDbDriver(
       storageLocation = Some(dbOutputFile),
-      dataFlowCacheFile = None
+      cacheConfig = DataFlowCacheConfig(dataFlowCacheFile = None)
     )) { d =>
       println(s"Creating CPG from .class files found under $targetDir")
       new Jimple2Cpg().createCpg(rawSourceCodePath = targetDir, driver = d)
@@ -32,7 +33,7 @@ object OverflowDbApp {
 
     println("Finding data flows from arguments to 'taint' that are eventually passed to `println`")
     val cpg = d.cpg
-    d.nodesReachableBy(cpg.call("taint").argument, cpg.call("println"))
+    d.flowsBetween(() => cpg.call("taint").argument, () => cpg.call("println"))
       .map { result => result.path.map(x => (x.node.method.name, x.node.code, x.node.label, x.node.propertyOption("LINE_NUMBER"))) }
       .distinct
       .map { n: Vector[(String, String, String, Optional[AnyRef])] =>
