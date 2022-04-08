@@ -1,8 +1,8 @@
 package com.example
 
 import com.github.plume.oss.Jimple2Cpg
-import com.github.plume.oss.domain.DataFlowCacheConfig
 import com.github.plume.oss.drivers.OverflowDbDriver
+import com.github.plume.oss.util.DataFlowCacheConfig
 
 import java.io.File
 import java.util.Optional
@@ -14,6 +14,9 @@ object OverflowDbApp {
     val targetDir = "./example"
     val dbOutputFile = "cpg.odb"
     val dbOutputXml = "cpg.xml"
+
+    // if you want to incrementally update an existing program, then re-use old binary
+    new File(dbOutputFile).delete()
 
     println("Creating driver")
     Using.resource(new OverflowDbDriver(
@@ -33,7 +36,7 @@ object OverflowDbApp {
 
     println("Finding data flows from arguments to 'taint' that are eventually passed to `println`")
     val cpg = d.cpg
-    d.flowsBetween(() => cpg.call("taint").argument, () => cpg.call("println"))
+    d.flowsBetween(cpg.call("taint").argument, cpg.call("println"))
       .map { result => result.path.map(x => (x.node.method.name, x.node.code, x.node.label, x.node.propertyOption("LINE_NUMBER"))) }
       .distinct
       .map { n: Vector[(String, String, String, Optional[AnyRef])] =>

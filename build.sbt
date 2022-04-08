@@ -8,7 +8,7 @@ lazy val root = (project in file("."))
     name := "plume-examples"
   )
 
-val plumeVersion = "1.2.0"
+val plumeVersion = "1.2.3"
 val log4jVersion = "2.17.2"
 
 resolvers ++= Seq(
